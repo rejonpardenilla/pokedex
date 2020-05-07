@@ -11,6 +11,7 @@ class Pokemon < ApplicationRecord
 
   validates :type_1, inclusion: { in: POSSIBLE_TYPES }, allow_nil: false
   validates :type_2, inclusion: { in: POSSIBLE_TYPES }, allow_nil: true
+  validates :name, presence: true
 
   scope :non_megas, -> { where mega: false }
   scope :megas, -> { where mega: true }
