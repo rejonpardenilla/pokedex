@@ -5,6 +5,8 @@ class Pokemon < ApplicationRecord
     'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy',
   ].freeze
 
+  has_one_attached :sprite
+
   types_hash = Hash[POSSIBLE_TYPES.collect { |type| [type, type] }]
   enum type_1: types_hash, _prefix: true
   enum type_2: types_hash, _prefix: true
