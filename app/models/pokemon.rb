@@ -20,4 +20,8 @@ class Pokemon < ApplicationRecord
   def types
     [self.type_1, self.type_2].compact
   end
+
+  def total
+    self.hp + self.attack + self.defense + self.special_attack + self.special_defense + self.speed
+  end
 end
