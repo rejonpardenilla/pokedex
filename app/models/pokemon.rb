@@ -3,10 +3,11 @@ class Pokemon < ApplicationRecord
     'normal', 'fighting', 'flying', 'poison', 'ground',
     'rock', 'bug', 'ghost', 'steel', 'fire', 'grass', 'water',
     'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy',
-  ]
+  ].freeze
 
-  enum type_1: POSSIBLE_TYPES, _prefix: true
-  enum type_2: POSSIBLE_TYPES, _prefix: true
+  types_hash = Hash[POSSIBLE_TYPES.collect { |type| [type, type] }]
+  enum type_1: types_hash, _prefix: true
+  enum type_2: types_hash, _prefix: true
 
   validates :type_1, inclusion: { in: POSSIBLE_TYPES }, allow_nil: false
   validates :type_2, inclusion: { in: POSSIBLE_TYPES }, allow_nil: true
