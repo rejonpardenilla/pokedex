@@ -4,12 +4,14 @@ class Pokemon < ApplicationRecord
     'rock', 'bug', 'ghost', 'steel', 'fire', 'grass', 'water',
     'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy',
   ].freeze
+  POSSIBLE_TYPES_HASH = Hash[POSSIBLE_TYPES.collect { |type| [type, type] }].freeze
 
   has_one_attached :sprite
+  has_many :move_by_level_ups
+  has_many :moves_learnt_by_level_up, through: :move_by_level_ups, source: :move
 
-  types_hash = Hash[POSSIBLE_TYPES.collect { |type| [type, type] }]
-  enum type_1: types_hash, _prefix: true
-  enum type_2: types_hash, _prefix: true
+  enum type_1: POSSIBLE_TYPES_HASH, _prefix: true
+  enum type_2: POSSIBLE_TYPES_HASH, _prefix: true
 
   validates :type_1, inclusion: { in: POSSIBLE_TYPES }, allow_nil: false
   validates :type_2, inclusion: { in: POSSIBLE_TYPES }, allow_nil: true

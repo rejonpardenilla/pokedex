@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_235247) do
+ActiveRecord::Schema.define(version: 2020_05_08_204519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2020_05_07_235247) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "move_by_level_ups", force: :cascade do |t|
+    t.integer "level"
+    t.bigint "pokemon_id", null: false
+    t.bigint "move_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["move_id"], name: "index_move_by_level_ups_on_move_id"
+    t.index ["pokemon_id"], name: "index_move_by_level_ups_on_pokemon_id"
   end
 
   create_table "moves", force: :cascade do |t|
@@ -68,4 +78,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_235247) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "move_by_level_ups", "moves"
+  add_foreign_key "move_by_level_ups", "pokemons"
 end
