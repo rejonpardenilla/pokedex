@@ -1,0 +1,39 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Total</th>
+      <th>HP</th>
+      <th>Attack</th>
+      <th>Defense</th>
+      <th>Sp. Atk</th>
+      <th>Sp. Def</th>
+      <th>Speed</th>
+      <th>Generation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% pokemons.each do |pokemon| %>
+      <tr>
+        <td><%= pokemon.pokedex_identifier %></td>
+        <td><%= pokemon.name %></td>
+        <td><%= multiple_type_badges_of pokemon.types %></td>
+        <td><%= pokemon.total %></td>
+        <td><%= pokemon.hp %></td>
+        <td><%= pokemon.attack %></td>
+        <td><%= pokemon.defense %></td>
+        <td><%= pokemon.special_attack %></td>
+        <td><%= pokemon.special_defense %></td>
+        <td><%= pokemon.speed %></td>
+        <td><%= pokemon.generation %></td>
+        <td><%= link_to 'Show', pokemon %></td>
+        <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
+        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pokemons</h1>
+
+<%= render 'filters' %>
+
+<hr>
+
+<%= render 'pokemon_card', pokemon: @random_pokemon %>
+
+<hr>
+
+<%= render 'table', pokemons: @pokemons %>
+
+<br>
+
+<%= link_to 'New Pokemon', new_pokemon_path %>
